@@ -51,7 +51,7 @@ mkdir ~/MultiMC && cd ~/MultiMC
 mkdir build
 mkdir install
 # clone the complete source
-git clone --recursive https://github.com/AfoninZ/MultiMC5-Cracked.git src
+git clone --recursive https://github.com/AfoninZ/UltimMC.git src
 # configure the project
 cd build
 cmake -DCMAKE_INSTALL_PREFIX=../install ../src
