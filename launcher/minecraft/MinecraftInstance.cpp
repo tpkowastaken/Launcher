@@ -437,8 +437,7 @@ QStringList MinecraftInstance::processMinecraftArgs(
 
     QMap<QString, QString> token_mapping;
     // yggdrasil!
-    if(session)
-    {
+    if(session) {
         // token_mapping["auth_username"] = session->username;
         token_mapping["auth_session"] = session->session;
         token_mapping["auth_access_token"] = session->access_token;
@@ -446,11 +445,13 @@ QStringList MinecraftInstance::processMinecraftArgs(
         token_mapping["auth_uuid"] = session->uuid;
         token_mapping["user_properties"] = session->serializeUserProperties();
         token_mapping["user_type"] = session->user_type;
+        if(session->demo) {
+            args_pattern += " --demo";
+        }
     }
 
-    // blatant self-promotion.
-    token_mapping["profile_name"] = token_mapping["version_name"] = "MultiMC5";
-
+    token_mapping["profile_name"] = name();
+    token_mapping["version_name"] = profile->getMinecraftVersion();
     token_mapping["version_type"] = profile->getMinecraftVersionType();
 
     QString absRootDir = QDir(gameRoot()).absolutePath();

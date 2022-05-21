@@ -15,8 +15,14 @@ MultiMC is a portable application and is not supposed to be installed into any s
 That would be anything outside your home folder. Before running `make install`, make sure
 you set the install path to something you have write access to. Never build this under
 an administrator/root level account. Don't use `sudo`. It won't work and it's not supposed to work.
-Also note that this guide is for development purposes only. No support is given for building your own fork or special build for any reason whatsoever.
+Also note that this guide is for development purposes only.  
+**No support is given for building your own fork or special build for any reason whatsoever**.
 
+# Branding, identifying marks and API keys
+
+The logo and related assets are All Rights Reserved and may only be used in official builds of MultiMC hosted on multimc.org, and as such, are not, and will not be included in this repository. The source is only provided for the purpose of collaboration. 
+
+API keys are necessary for Microsoft account functionality. More info in [(Not) Secrets](https://github.com/MultiMC/Launcher/tree/develop/notsecrets)
 
 # Getting the source
 
@@ -34,7 +40,7 @@ Getting the project to build and run on Linux is easy if you use any modern and 
 
 ## Build dependencies
 * A C++ compiler capable of building C++11 code.
-* Qt 5.6+ Development tools (http://qt-project.org/downloads) ("Qt Online Installer for Linux (64 bit)") or the equivalent from your package manager. It is always better to use the Qt from your distribution, as long as it has a new enough version.
+* Qt 5.6+ Development tools (http://qt-project.org/downloads) ("Qt Online Installer for Linux (64 bit)") or the equivalent from your package manager. It is always better to use the Qt from your distribution, as long as it has a new enough version. (for example, `qttools5-dev`)
 * cmake 3.1 or newer
 * zlib (for example, `zlib1g-dev`)
 * Java JDK 8 (for example, `openjdk-8-jdk`)
@@ -173,10 +179,18 @@ zlib1.dll
 # macOS
 
 ### Install prerequisites:
-- Install XCode and set it up to the point where you can build things from a terminal
+- Install XCode Command Line tools
 - Install the official build of CMake (https://cmake.org/download/)
 - Install JDK 8 (https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html)
 - Get Qt 5.6 and install it (https://download.qt.io/new_archive/qt/5.6/5.6.3/)
+
+### XCode Command Line tools
+
+If you don't have XCode CommandLine tools installed, you can install them by using this command in the Terminal App
+
+```bash
+xcode-select --install
+```
 
 ### Build
 

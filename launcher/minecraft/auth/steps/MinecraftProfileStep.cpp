@@ -56,11 +56,15 @@ void MinecraftProfileStep::onRequestDone(
         );
         return;
     }
-    */
+    if (error != QNetworkReply::NoError) {
+        qWarning() << "Error getting profile:";
+        qWarning() << " HTTP Status:        " << requestor->httpStatus_;
+        qWarning() << " Internal error no.: " << error;
+        qWarning() << " Error string:       " << requestor->errorString_;
 
-    // This is too generic of a error handler
-    // Should be replaced with a switch for errors
-    /*if (error != QNetworkReply::NoError) {
+        qWarning() << " Response:";
+        qWarning() << QString::fromUtf8(data);
+
         emit finished(
             AccountTaskState::STATE_FAILED_SOFT,
             tr("Minecraft Java profile acquisition failed.")

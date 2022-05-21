@@ -234,6 +234,8 @@ set(MINECRAFT_SOURCES
 
     minecraft/auth/steps/EntitlementsStep.cpp
     minecraft/auth/steps/EntitlementsStep.h
+    minecraft/auth/steps/ForcedMigrationStep.cpp
+    minecraft/auth/steps/ForcedMigrationStep.h
     minecraft/auth/steps/GetSkinStep.cpp
     minecraft/auth/steps/GetSkinStep.h
     minecraft/auth/steps/LauncherLoginStep.cpp
@@ -514,23 +516,6 @@ set(FTB_SOURCES
     modplatform/legacy_ftb/PackHelpers.h
 )
 
-set(FLAME_SOURCES
-    # Flame
-    modplatform/flame/FlamePackIndex.cpp
-    modplatform/flame/FlamePackIndex.h
-    modplatform/flame/PackManifest.h
-    modplatform/flame/PackManifest.cpp
-    modplatform/flame/FileResolvingTask.h
-    modplatform/flame/FileResolvingTask.cpp
-)
-
-set(MODPACKSCH_SOURCES
-    modplatform/modpacksch/FTBPackInstallTask.h
-    modplatform/modpacksch/FTBPackInstallTask.cpp
-    modplatform/modpacksch/FTBPackManifest.h
-    modplatform/modpacksch/FTBPackManifest.cpp
-)
-
 set(TECHNIC_SOURCES
     modplatform/technic/SingleZipPackInstallTask.h
     modplatform/technic/SingleZipPackInstallTask.cpp
@@ -547,6 +532,11 @@ set(ATLAUNCHER_SOURCES
     modplatform/atlauncher/ATLPackInstallTask.h
     modplatform/atlauncher/ATLPackManifest.cpp
     modplatform/atlauncher/ATLPackManifest.h
+)
+
+set(MODRINTH_SOURCES
+    modplatform/modrinth/ModrinthPackManifest.cpp
+    modplatform/modrinth/ModrinthPackManifest.h
 )
 
 add_unit_test(Index
@@ -581,6 +571,7 @@ set(LOGIC_SOURCES
     ${MODPACKSCH_SOURCES}
     ${TECHNIC_SOURCES}
     ${ATLAUNCHER_SOURCES}
+    ${MODRINTH_SOURCES}
 )
 
 SET(LAUNCHER_SOURCES
@@ -737,22 +728,16 @@ SET(LAUNCHER_SOURCES
     ui/pages/modplatform/atlauncher/AtlPage.cpp
     ui/pages/modplatform/atlauncher/AtlPage.h
 
-    ui/pages/modplatform/ftb/FtbFilterModel.cpp
-    ui/pages/modplatform/ftb/FtbFilterModel.h
-    ui/pages/modplatform/ftb/FtbListModel.cpp
-    ui/pages/modplatform/ftb/FtbListModel.h
-    ui/pages/modplatform/ftb/FtbPage.cpp
-    ui/pages/modplatform/ftb/FtbPage.h
-
     ui/pages/modplatform/legacy_ftb/Page.cpp
     ui/pages/modplatform/legacy_ftb/Page.h
     ui/pages/modplatform/legacy_ftb/ListModel.h
     ui/pages/modplatform/legacy_ftb/ListModel.cpp
 
-    ui/pages/modplatform/flame/FlameModel.cpp
-    ui/pages/modplatform/flame/FlameModel.h
-    ui/pages/modplatform/flame/FlamePage.cpp
-    ui/pages/modplatform/flame/FlamePage.h
+    ui/pages/modplatform/modrinth/ModrinthData.h
+    ui/pages/modplatform/modrinth/ModrinthModel.cpp
+    ui/pages/modplatform/modrinth/ModrinthModel.h
+    ui/pages/modplatform/modrinth/ModrinthPage.cpp
+    ui/pages/modplatform/modrinth/ModrinthPage.h
 
     ui/pages/modplatform/technic/TechnicModel.cpp
     ui/pages/modplatform/technic/TechnicModel.h
@@ -874,10 +859,9 @@ qt5_wrap_ui(LAUNCHER_UI
     ui/pages/modplatform/atlauncher/AtlOptionalModDialog.ui
     ui/pages/modplatform/atlauncher/AtlPage.ui
     ui/pages/modplatform/VanillaPage.ui
-    ui/pages/modplatform/flame/FlamePage.ui
     ui/pages/modplatform/legacy_ftb/Page.ui
     ui/pages/modplatform/ImportPage.ui
-    ui/pages/modplatform/ftb/FtbPage.ui
+    ui/pages/modplatform/modrinth/ModrinthPage.ui
     ui/pages/modplatform/technic/TechnicPage.ui
     ui/widgets/InstanceCardWidget.ui
     ui/widgets/CustomCommands.ui

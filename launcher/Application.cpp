@@ -523,7 +523,7 @@ Application::Application(int &argc, char **argv) : QApplication(argc, argv)
     // Set up paths
     {
         // Root path is used for updates.
-#ifdef Q_OS_LINUX
+#if defined(Q_OS_LINUX) || defined(Q_OS_FREEBSD)
         QDir foo(FS::PathCombine(binPath, ".."));
         m_rootPath = foo.absolutePath();
 #elif defined(Q_OS_WIN32)
@@ -681,6 +681,9 @@ Application::Application(int &argc, char **argv) : QApplication(argc, argv)
 
         // Minecraft launch method
         m_settings->registerSetting("MCLaunchMethod", "LauncherPart");
+
+        // Minecraft offline player name
+        m_settings->registerSetting("LastOfflinePlayerName", "");
 
         // Wrapper command for launch
         m_settings->registerSetting("WrapperCommand", "");
@@ -865,9 +868,8 @@ Application::Application(int &argc, char **argv) : QApplication(argc, argv)
         m_metacache->addBase("general", QDir("cache").absolutePath());
         m_metacache->addBase("ATLauncherPacks", QDir("cache/ATLauncherPacks").absolutePath());
         m_metacache->addBase("FTBPacks", QDir("cache/FTBPacks").absolutePath());
-        m_metacache->addBase("ModpacksCHPacks", QDir("cache/ModpacksCHPacks").absolutePath());
         m_metacache->addBase("TechnicPacks", QDir("cache/TechnicPacks").absolutePath());
-        m_metacache->addBase("FlamePacks", QDir("cache/FlamePacks").absolutePath());
+        m_metacache->addBase("ModrinthPacks", QDir("cache/ModrinthPacks").absolutePath());
         m_metacache->addBase("root", QDir::currentPath());
         m_metacache->addBase("translations", QDir("translations").absolutePath());
         m_metacache->addBase("icons", QDir("cache/icons").absolutePath());

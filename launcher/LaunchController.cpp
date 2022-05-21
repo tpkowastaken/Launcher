@@ -16,6 +16,7 @@
 #include <QHostInfo>
 #include <QList>
 #include <QHostAddress>
+#include <QPushButton>
 
 #include "BuildConfig.h"
 #include "JavaCommon.h"
@@ -35,7 +36,10 @@ void LaunchController::executeTask()
         return;
     }
 
-    JavaCommon::checkJVMArgs(m_instance->settings()->get("JvmArgs").toString(), m_parentWidget);
+    if(!JavaCommon::checkJVMArgs(m_instance->settings()->get("JvmArgs").toString(), m_parentWidget)) {
+        emitFailed(tr("Invalid Java arguments specified. Please fix this first."));
+        return;
+    }
 
     login();
 }
@@ -164,6 +168,18 @@ void LaunchController::login() {
                 QMessageBox::warning(
                     m_parentWidget,
                     tr("Account gone"),
+                    errorString,
+                    QMessageBox::StandardButton::Ok,
+                    QMessageBox::StandardButton::Ok
+                );
+                emitFailed(errorString);
+                return;
+            }
+            case AccountState::MustMigrate: {
+                auto errorString = tr("The account must be migrated to a Microsoft account.");
+                QMessageBox::warning(
+                    m_parentWidget,
+                    tr("Account requires migration"),
                     errorString,
                     QMessageBox::StandardButton::Ok,
                     QMessageBox::StandardButton::Ok
