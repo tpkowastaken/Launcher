@@ -19,7 +19,7 @@ void InjectAuthlib::executeTask()
     }
 
     auto latestVersionInfo = QString("https://authlib-injector.yushi.moe/artifact/latest.json");
-    auto netJob = new NetJob("Injector versions info download");
+    auto netJob = new NetJob("Injector versions info download", APPLICATION->network());
     MetaEntryPtr entry = APPLICATION->metacache()->resolveEntry("injectors", "version.json");
     if (!m_offlineMode)
     {
@@ -30,7 +30,7 @@ void InjectAuthlib::executeTask()
         jobPtr.reset(netJob);
         QObject::connect(netJob, &NetJob::succeeded, this, &InjectAuthlib::onVersionDownloadSucceeded);
         QObject::connect(netJob, &NetJob::failed, this, &InjectAuthlib::onDownloadFailed);
-        jobPtr->start(APPLICATION->network());
+        jobPtr->start();
     }
     else
     {
@@ -95,7 +95,7 @@ void InjectAuthlib::onVersionDownloadSucceeded()
     qDebug() << "Authlib injector version:" << m_versionName;
     if (!m_offlineMode)
     {
-        auto netJob = new NetJob("Injector download");
+        auto netJob = new NetJob("Injector download", APPLICATION->network());
         MetaEntryPtr entry = APPLICATION->metacache()->resolveEntry("injectors", m_versionName);
         entry->setStale(true);
         auto task = Net::Download::makeCached(QUrl(downloadUrl), entry);
@@ -104,7 +104,7 @@ void InjectAuthlib::onVersionDownloadSucceeded()
         jobPtr.reset(netJob);
         QObject::connect(netJob, &NetJob::succeeded, this, &InjectAuthlib::onDownloadSucceeded);
         QObject::connect(netJob, &NetJob::failed, this, &InjectAuthlib::onDownloadFailed);
-        jobPtr->start(APPLICATION->network());
+        jobPtr->start();
     }
     else
     {
