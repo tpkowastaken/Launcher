@@ -10,7 +10,7 @@ on:
 jobs:
   build-linux:
     name: build-linux
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
 
     steps:
       - uses: actions/checkout@v3.0.2
@@ -20,13 +20,15 @@ jobs:
       - name: Install Dependencies
         run: |
           sudo apt update
-          sudo apt install libgl1-mesa-dev qt5-default
+          sudo apt install libgl1-mesa-dev qttools5-dev openjdk-8-jdk g++-5 gcc-5
 
       - name: Build
         run: |
           mkdir build
           cd build
           cmake \
+           -DCMAKE_C_COMPILER=/usr/bin/gcc-5 \
+           -DCMAKE_CXX_COMPILER=/usr/bin/g++-5 \
            -DCMAKE_BUILD_TYPE=Release \
            -DLauncher_NOTIFICATION_URL:STRING=https://files.multimc.org/notifications.json \
            -DCMAKE_INSTALL_PREFIX:PATH=/home/runner/UltimMC/UltimMC \
