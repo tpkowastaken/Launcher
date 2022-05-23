@@ -100,7 +100,7 @@ jobs:
 
       - name: Download Qt non-Interactive Script
         if: steps.qt-cached.outputs.cache-hit != 'true'
-        run: curl https://gist.githubusercontent.com/PibePlayer/cf6bd0a9f7e4d51e3e618ceedfba4b94/raw/09cb1415952b914f1567ce935d4618c396aec340/qt-installer-noninteractive.qs --output nonInteractive.qs
+        run: curl https://gist.githubusercontent.com/Sebastian-byte/aa6c051abc17e7d9d609add7f6dfd16a/raw/074dedb7525c0ffc010b39871615b008c2efbcd6/qt-installer-noninteractive.qs --output nonInteractive.qs
 
       - name: Install Qt
         if: steps.qt-cached.outputs.cache-hit != 'true'
