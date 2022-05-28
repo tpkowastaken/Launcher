@@ -20,6 +20,11 @@
 #include <FileSystem.h>
 #include <Json.h>
 
+#if defined(Q_OS_WIN32)
+#include <windows.h>
+constexpr int BUFFER_SIZE = 1024;
+#endif
+
 namespace ImportFTB {
 
 Model::Model(QObject *parent) : QAbstractListModel(parent)
@@ -71,10 +76,14 @@ QString getFTBASettingsPath() {
 }
 #elif defined(Q_OS_WIN32)
 QString getFTBASettingsPath() {
-    auto appDataLocalInner = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
-    QDir appdata(appDataLocalInner);
-    appdata.cdUp();
-    return FS::PathCombine(appdata.absolutePath(), ".ftba/bin/settings.json");
+    wchar_t buf[BUFFER_SIZE];
+    if(!GetEnvironmentVariableW(L"LOCALAPPDATA", buf, BUFFER_SIZE))
+    {
+        return QString();
+    }
+    QString appDataLocal = QString::fromWCharArray(buf);
+    QString settingsPath = FS::PathCombine(appDataLocal, ".ftba/bin/settings.json");
+    return settingsPath;
 }
 #else
 QString getFTBASettingsPath() {
@@ -84,14 +93,14 @@ QString getFTBASettingsPath() {
 
 QString getFTBAInstances() {
     QByteArray data;
+    auto settingsPath = getFTBASettingsPath();
     try
     {
-        auto path = getFTBASettingsPath();
-        data = FS::read(path);
+        data = FS::read(settingsPath);
     }
     catch (const Exception &e)
     {
-        qWarning() << "Could not read FTBA settings file";
+        qWarning() << "Could not read FTB App settings file: " << settingsPath;
         return QString();
     }
 
@@ -103,13 +112,13 @@ QString getFTBAInstances() {
     }
     catch (Json::JsonException & e)
     {
-        qCritical() << "Could not read FTBA settings file as JSON: " << e.cause();
+        qCritical() << "Could not read FTB App settings file as JSON: " << e.cause();
         return QString();
     }
 }
 
 /*
-Reference from an FTBA file, as of 28.05.2022
+Reference from an FTB App file, as of 28.05.2022
 {
   "_private": false,
   "uuid": "25850fc6-ec61-4bc6-8397-77e4497bf922",
@@ -175,7 +184,7 @@ bool parseModpackJson(const QByteArray& data, Modpack & out) {
     }
     catch (Json::JsonException & e)
     {
-        qCritical() << "Could not read FTBA settings file as JSON: " << e.cause();
+        qCritical() << "Could not read FTB App settings file as JSON: " << e.cause();
         return false;
     }
 }
@@ -201,7 +210,7 @@ bool tryLoadInstance(const QString& location, Modpack & out) {
     }
     catch (const Exception &e)
     {
-        qWarning() << "Could not read FTBA instance JSON file: " << jsonLocation;
+        qWarning() << "Could not read FTB App instance JSON file: " << jsonLocation;
         return false;
     }
     return false;
