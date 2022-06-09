@@ -139,8 +139,8 @@ jobs:
         shell: cmd
         if: steps.build-cached.outputs.cache-hit != 'true'
         run: |
-          for /f "tokens=*" %%n in ('powershell -NoLogo -Command "$(ls $pwd\cmake-*-windows-i386\bin).Fullname"') do @(setx PATHCM %%n)
           set PATH=D:\Qt\5.6.3\mingw49_32\bin;D:\Qt\Tools\mingw492_32\bin;
+          for /f "tokens=*" %%n in ('powershell -NoLogo -Command "$(ls $pwd\cmake-*-windows-i386\bin).Fullname"') do @(setx PATHCM %%n)
           set PATH=%CD%\zlib;%CD%\zlib\bin;%CD%\zlib\lib;%CD%\zlib\include;%PATH%
           set PATH=%CD%\OpenSSL;%PATH%
           set PATH=%PATHCM%;%PATH%
@@ -163,8 +163,8 @@ jobs:
       - name: Compile
         shell: cmd
         run: |
-          for /f "tokens=*" %%n in ('powershell -NoLogo -Command "$(ls $pwd\cmake-*-windows-i386\bin).Fullname"') do @(setx PATHCM %%n)
           set PATH=D:\Qt\5.6.3\mingw49_32\bin;D:\Qt\Tools\mingw492_32\bin;
+          for /f "tokens=*" %%n in ('powershell -NoLogo -Command "$(ls $pwd\cmake-*-windows-i386\bin).Fullname"') do @(setx PATHCM %%n)
           set PATH=%CD%\zlib;%CD%\zlib\bin;%PATH%
           set PATH=%CD%\OpenSSL;%PATH%
           set PATH=%PATHCM%;%PATH%
@@ -176,8 +176,8 @@ jobs:
       - name: Test
         shell: cmd
         run: |
-          for /f "tokens=*" %%n in ('powershell -NoLogo -Command "$(ls $pwd\cmake-*-windows-i386\bin).Fullname"') do @(setx PATHCM %%n)
           set PATH=D:\Qt\5.6.3\mingw49_32\bin;D:\Qt\Tools\mingw492_32\bin;
+          for /f "tokens=*" %%n in ('powershell -NoLogo -Command "$(ls $pwd\cmake-*-windows-i386\bin).Fullname"') do @(setx PATHCM %%n)
           set PATH=%CD%\zlib;%CD%\zlib\bin;%PATH%
           set PATH=%CD%\OpenSSL;%PATH%
           set PATH=%PATHCM%;%PATH%
@@ -189,8 +189,8 @@ jobs:
       - name: Install
         shell: cmd
         run: |
-          for /f "tokens=*" %%n in ('powershell -NoLogo -Command "$(ls $pwd\cmake-*-windows-i386\bin).Fullname"') do @(setx PATHCM %%n)
           set PATH=D:\Qt\5.6.3\mingw49_32\bin;D:\Qt\Tools\mingw492_32\bin;
+          for /f "tokens=*" %%n in ('powershell -NoLogo -Command "$(ls $pwd\cmake-*-windows-i386\bin).Fullname"') do @(setx PATHCM %%n)
           set PATH=%CD%\zlib;%CD%\zlib\bin;%PATH%
           set PATH=%CD%\OpenSSL;%PATH%
           set PATH=%PATHCM%;%PATH%
