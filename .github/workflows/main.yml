@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-18.04
 
     steps:
-      - uses: actions/checkout@v3.0.2
+      - uses: actions/checkout@main
         with:
           submodules: 'recursive'
 
@@ -59,7 +59,7 @@ jobs:
           chmod +x /home/runner/UltimMC/UltimMC/bin/UltimMC
 
       - name: Upload Artifacts
-        uses: actions/upload-artifact@v3.1.0
+        uses: actions/upload-artifact@main
         with:
           name: mmc-cracked-lin64
           path: /home/runner/UltimMC
@@ -69,19 +69,19 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v3.0.2
+      - uses: actions/checkout@main
         with:
           submodules: 'recursive'
 
       - name: Cache Qt
-        uses: actions/cache@v3.0.2
+        uses: actions/cache@main
         id: qt-cached
         with:
           path: "D:/Qt"
           key: ${{ runner.os }}-qt56-installed-d
 
       - name: Cache Qt Installer
-        uses: actions/cache@v3.0.2
+        uses: actions/cache@main
         if: steps.qt-cached.outputs.cache-hit != 'true'
         id: installer-cached
         with:
@@ -109,11 +109,11 @@ jobs:
 
       - name: Setup CMake
         run: |
-          curl -L https://github.com/Kitware/CMake/releases/download/v3.23.1/cmake-3.23.1-windows-i386.zip -o cmake.zip
+          curl -L $(curl -s https://api.github.com/repos/kitware/cmake/releases/latest | python -c "import sys, json; print(json.load(sys.stdin)['assets'][12]['browser_download_url'])") -o cmake.zip
           unzip cmake.zip
 
       - name: Setup JDK
-        uses: actions/setup-java@v3.3.0
+        uses: actions/setup-java@v3
         with:
           distribution: 'zulu'
           java-version: '8'
@@ -139,10 +139,11 @@ jobs:
         shell: cmd
         if: steps.build-cached.outputs.cache-hit != 'true'
         run: |
+          for /f "tokens=*" %%n in ("powershell -NoLogo -Command \"$(ls $pwd\cmake-*-windows-i386\bin)\"") do @(setx PATHCM %%n)
           set PATH=D:\Qt\5.6.3\mingw49_32\bin;D:\Qt\Tools\mingw492_32\bin;
           set PATH=%CD%\zlib;%CD%\zlib\bin;%CD%\zlib\lib;%CD%\zlib\include;%PATH%
           set PATH=%CD%\OpenSSL;%PATH%
-          set PATH=%CD%\cmake-3.23.1-windows-i386\bin;%PATH%
+          set PATH=%PATHCM%;%PATH%
           set CC=D:\Qt\Tools\mingw492_32\bin\gcc.exe
           set CXX=D:\Qt\Tools\mingw492_32\bin\g++.exe
           mkdir build
@@ -162,10 +163,11 @@ jobs:
       - name: Compile
         shell: cmd
         run: |
+          for /f "tokens=*" %%n in ("powershell -NoLogo -Command \"$(ls $pwd\cmake-*-windows-i386\bin)\"") do @(setx PATHCM %%n)
           set PATH=D:\Qt\5.6.3\mingw49_32\bin;D:\Qt\Tools\mingw492_32\bin;
           set PATH=%CD%\zlib;%CD%\zlib\bin;%PATH%
           set PATH=%CD%\OpenSSL;%PATH%
-          set PATH=%CD%\cmake-3.23.1-windows-i386\bin;%PATH%
+          set PATH=%PATHCM%;%PATH%
           set PATH=C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;%PATH%
           cd build
           mingw32-make tcversion
@@ -174,10 +176,11 @@ jobs:
       - name: Test
         shell: cmd
         run: |
+          for /f "tokens=*" %%n in ("powershell -NoLogo -Command \"$(ls $pwd\cmake-*-windows-i386\bin)\"") do @(setx PATHCM %%n)
           set PATH=D:\Qt\5.6.3\mingw49_32\bin;D:\Qt\Tools\mingw492_32\bin;
           set PATH=%CD%\zlib;%CD%\zlib\bin;%PATH%
           set PATH=%CD%\OpenSSL;%PATH%
-          set PATH=%CD%\cmake-3.23.1-windows-i386\bin;%PATH%
+          set PATH=%PATHCM%;%PATH%
           set PATH=C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;%PATH%
           cd build
           mingw32-make test
@@ -186,10 +189,11 @@ jobs:
       - name: Install
         shell: cmd
         run: |
+          for /f "tokens=*" %%n in ("powershell -NoLogo -Command \"$(ls $pwd\cmake-*-windows-i386\bin)\"") do @(setx PATHCM %%n)
           set PATH=D:\Qt\5.6.3\mingw49_32\bin;D:\Qt\Tools\mingw492_32\bin;
           set PATH=%CD%\zlib;%CD%\zlib\bin;%PATH%
           set PATH=%CD%\OpenSSL;%PATH%
-          set PATH=%CD%\cmake-3.23.1-windows-i386\bin;%PATH%
+          set PATH=%PATHCM%;%PATH%
           set PATH=C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;%PATH%
           cd build
           mingw32-make install
@@ -201,7 +205,7 @@ jobs:
           cp OpenSSL/libeay32.dll D:/UltimMC/UltimMC/libeay32.dll
 
       - name: Upload Artifacts
-        uses: actions/upload-artifact@v3.1.0
+        uses: actions/upload-artifact@main
         with:
           name: mmc-cracked-win32
           path: "D:/UltimMC"
@@ -211,12 +215,12 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - uses: actions/checkout@v3.0.2
+      - uses: actions/checkout@main
         with:
           submodules: 'recursive'
 
       - name: Cache Dependencies
-        uses: actions/cache@v3.0.2
+        uses: actions/cache@main
         with:
           path: /Users/runner/Library/Caches/Homebrew
           key: ${{ runner.os }}-deps-cache
@@ -265,7 +269,7 @@ jobs:
           chmod +x /Users/runner/work/UltimMC/build/dist/UltimMC.app/Contents/MacOS/UltimMC
 
       - name: Upload Artifacts
-        uses: actions/upload-artifact@v3.1.0
+        uses: actions/upload-artifact@main
         with:
           name: mmc-cracked-osx64
           path: /Users/runner/work/UltimMC/build/dist
