@@ -3,7 +3,7 @@
 ## This software is not related to MultiMC developers and provided without any warranty. Please don't bomb MultiMC developers if something gets wrong using this launcher.
 
 ## Pre-built binaries:
-- Windows / Linux / MacOS: https://nightly.link/AfoninZ/UltimMC/workflows/main/develop
+- Windows / Linux / MacOS: https://nightly.link/UltimMC/Launcher/workflows/main/main
 
 To update the launcher replace all replaceable files and folders with the newer one from the above link. Do not use the inbuilt option, as that downloads the MultiMC launcher instead (this will be fixed in a future version).
 
@@ -18,7 +18,7 @@ To update the launcher replace all replaceable files and folders with the newer 
 
 In case if you are using MacOS/Linux then additional step is to make a script `UltimMC` executable by using the command `chmod +x UltimMC` in the terminal
 
-To remove the "localhost:nnnn" or "ElyBy" in the minecraft main menu and F3, add `-Dauthlibinjector.noShowServerName` to the java arguments in UltimMC settings.
+To remove the "localhost:nnnn" or "Ely.by" in the minecraft main menu and F3, add `-Dauthlibinjector.noShowServerName` to the java arguments in UltimMC settings.
 
 # Details about the ORIGINAL launcher below:
 
