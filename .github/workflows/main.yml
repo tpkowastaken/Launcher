@@ -109,7 +109,7 @@ jobs:
 
       - name: Setup CMake
         run: |
-          curl -L $(curl -s https://api.github.com/repos/kitware/cmake/releases/latest | python -c "import sys, json; print(json.load(sys.stdin)['assets'][12]['browser_download_url'])") -o cmake.zip
+          curl -L $(curl -s https://api.github.com/repos/kitware/cmake/releases/latest | python -c "import sys, json; print(json.load(sys.stdin)['assets'][14]['browser_download_url'])") -o cmake.zip
           unzip cmake.zip
 
       - name: Setup JDK
