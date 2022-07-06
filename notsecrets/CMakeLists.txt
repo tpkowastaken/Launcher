@@ -9,7 +9,7 @@ set(Launcher_Copyright "UltimMC Contributors" PARENT_SCOPE)
 set(Launcher_Domain "multimc.org" PARENT_SCOPE)
 set(Launcher_Name "${Launcher_CommonName}" PARENT_SCOPE)
 set(Launcher_DisplayName "${Launcher_CommonName} 5" PARENT_SCOPE)
-set(Launcher_UserAgent "${Launcher_CommonName}/5.0" PARENT_SCOPE)
+set(Launcher_UserAgent "MultiMC/5.0" PARENT_SCOPE)
 set(Launcher_ConfigFile "ultimmc.cfg" PARENT_SCOPE)
 set(Launcher_Git "https://github.com/UltimMC/Launcher" PARENT_SCOPE)
 
