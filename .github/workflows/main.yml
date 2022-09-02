@@ -2,15 +2,15 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ develop ]
   pull_request:
-    branches: [ main ]
+    branches: [ develop ]
   workflow_dispatch:
 
 jobs:
   build-linux:
     name: build-linux
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@main
@@ -19,6 +19,8 @@ jobs:
 
       - name: Install Dependencies
         run: |
+          sudo add-apt-repository 'deb http://dk.archive.ubuntu.com/ubuntu/ xenial main'
+          sudo add-apt-repository 'deb http://dk.archive.ubuntu.com/ubuntu/ xenial universe'
           sudo apt update
           sudo apt install libgl1-mesa-dev qttools5-dev g++-5 gcc-5
 
