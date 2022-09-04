@@ -3,7 +3,7 @@
 ## This software is not related to MultiMC developers and provided without any warranty. Please don't bomb MultiMC developers if something gets wrong using this launcher.
 
 ## Pre-built binaries:
-- Windows / Linux / MacOS: https://nightly.link/UltimMC/Launcher/workflows/develop/develop
+- Windows / Linux / MacOS: https://nightly.link/UltimMC/Launcher/workflows/main/develop
 
 To update the launcher replace all replaceable files and folders with the newer one from the above link. Do not use the inbuilt option, as that downloads the MultiMC launcher instead (this will be fixed in a future version).
 
