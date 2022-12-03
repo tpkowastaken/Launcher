@@ -227,7 +227,7 @@ jobs:
         with:
           arch: "win32_mingw81"
           cache: true
-          dir: "D:/"
+          dir: "D:"
 
       - name: Setup CMake
         run: |
@@ -262,6 +262,7 @@ jobs:
         if: steps.build-cached.outputs.cache-hit != 'true'
         run: |
           for /f "tokens=*" %%n in ('powershell -NoLogo -Command "$(ls $pwd\cmake-*-windows-i386\bin).Fullname"') do @(set PATHCM=%%n)
+          dir D:\Qt\Tools\mingw810_32\bin
           set PATH=D:\Qt\5.15.2\mingw81_32\bin;D:\Qt\Tools\mingw810_32\bin;
           set PATH=%CD%\zlib;%CD%\zlib\bin;%CD%\zlib\lib;%CD%\zlib\include;%PATH%
           set PATH=%CD%\OpenSSL;%PATH%
@@ -270,6 +271,8 @@ jobs:
           set CXX=D:\Qt\Tools\mingw810_32\bin\g++.exe
           mkdir build
           cd build
+          mingw32-make.exe
+          make.exe
           cmake ^
            -DCMAKE_BUILD_TYPE=Release ^
            -DLauncher_NOTIFICATION_URL:STRING=https://files.multimc.org/notifications.json ^
