@@ -128,8 +128,8 @@ jobs:
         run: |
           mkdir zlib
           cd zlib
-          wget -O zlib.zip https://downloads.sourceforge.net/project/gnuwin32/zlib/1.2.3/zlib-1.2.3-bin.zip
-          wget -O zliblibs.zip https://downloads.sourceforge.net/project/gnuwin32/zlib/1.2.3/zlib-1.2.3-lib.zip
+          C:\msys64\usr\bin\wget.exe -O zlib.zip https://downloads.sourceforge.net/project/gnuwin32/zlib/1.2.3/zlib-1.2.3-bin.zip
+          C:\msys64\usr\bin\wget.exe -O zliblibs.zip https://downloads.sourceforge.net/project/gnuwin32/zlib/1.2.3/zlib-1.2.3-lib.zip
           unzip zlib.zip
           unzip zliblibs.zip
 
@@ -251,8 +251,8 @@ jobs:
         run: |
           mkdir zlib
           cd zlib
-          wget -O zlib.zip https://downloads.sourceforge.net/project/gnuwin32/zlib/1.2.3/zlib-1.2.3-bin.zip
-          wget -O zliblibs.zip https://downloads.sourceforge.net/project/gnuwin32/zlib/1.2.3/zlib-1.2.3-lib.zip
+          C:\msys64\usr\bin\wget.exe -O zlib.zip https://downloads.sourceforge.net/project/gnuwin32/zlib/1.2.3/zlib-1.2.3-bin.zip
+          C:\msys64\usr\bin\wget.exe -O zliblibs.zip https://downloads.sourceforge.net/project/gnuwin32/zlib/1.2.3/zlib-1.2.3-lib.zip
           unzip zlib.zip
           unzip zliblibs.zip
 
