@@ -41,6 +41,7 @@ jobs:
            -DLauncher_ANALYTICS_ID:STRING=UA-87731965-2 \
            -DLauncher_LAYOUT=lin-nodeps \
            -DLauncher_BUILD_PLATFORM=lin64 \
+           -DLauncher_BUG_TRACKER_URL=https://github.com/UltimMC/Launcher/issues \
            $GITHUB_WORKSPACE
 
       - name: Compile
@@ -127,8 +128,8 @@ jobs:
         run: |
           mkdir zlib
           cd zlib
-          curl -L https://downloads.sourceforge.net/project/gnuwin32/zlib/1.2.3/zlib-1.2.3-bin.zip -o zlib.zip
-          curl -L https://downloads.sourceforge.net/project/gnuwin32/zlib/1.2.3/zlib-1.2.3-lib.zip -o zliblibs.zip
+          wget -O zlib.zip https://downloads.sourceforge.net/project/gnuwin32/zlib/1.2.3/zlib-1.2.3-bin.zip
+          wget -O zliblibs.zip https://downloads.sourceforge.net/project/gnuwin32/zlib/1.2.3/zlib-1.2.3-lib.zip
           unzip zlib.zip
           unzip zliblibs.zip
 
@@ -148,19 +149,22 @@ jobs:
           set PATH=%CD%\zlib;%CD%\zlib\bin;%CD%\zlib\lib;%CD%\zlib\include;%PATH%
           set PATH=%CD%\OpenSSL;%PATH%
           set PATH=%PATHCM%;%PATH%
-          set CC=D:\Qt\Tools\mingw492_32\bin\gcc.exe
-          set CXX=D:\Qt\Tools\mingw492_32\bin\g++.exe
           mkdir build
           cd build
           cmake ^
+           -DCMAKE_C_COMPILER=gcc ^
+           -DCMAKE_CXX_COMPILER=g++ ^
            -DCMAKE_BUILD_TYPE=Release ^
            -DLauncher_NOTIFICATION_URL:STRING=https://files.multimc.org/notifications.json ^
            -DCMAKE_INSTALL_PREFIX:PATH="D:/UltimMC/UltimMC" ^
+           -DCMAKE_PREFIX_PATH="D:\Qt\5.6.3\mingw49_32" ^
+           -DQt5_DIR="D:\Qt\5.6.3\mingw49_32" ^
            -DLauncher_UPDATER_BASE=https://files.multimc.org/update/ ^
            -DLauncher_PASTE_EE_API_KEY:STRING=utLvciUouSURFzfjPxLBf5W4ISsUX4pwBDF7N1AfZ ^
            -DLauncher_ANALYTICS_ID:STRING=UA-87731965-2 ^
            -DLauncher_LAYOUT=win-bundle ^
            -DLauncher_BUILD_PLATFORM=win32 ^
+           -DLauncher_BUG_TRACKER_URL=https://github.com/UltimMC/Launcher/issues ^
            -G "MinGW Makefiles" ^
            ..
 
@@ -247,8 +251,8 @@ jobs:
         run: |
           mkdir zlib
           cd zlib
-          curl -L https://downloads.sourceforge.net/project/gnuwin32/zlib/1.2.3/zlib-1.2.3-bin.zip -o zlib.zip
-          curl -L https://downloads.sourceforge.net/project/gnuwin32/zlib/1.2.3/zlib-1.2.3-lib.zip -o zliblibs.zip
+          wget -O zlib.zip https://downloads.sourceforge.net/project/gnuwin32/zlib/1.2.3/zlib-1.2.3-bin.zip
+          wget -O zliblibs.zip https://downloads.sourceforge.net/project/gnuwin32/zlib/1.2.3/zlib-1.2.3-lib.zip
           unzip zlib.zip
           unzip zliblibs.zip
 
@@ -261,20 +265,22 @@ jobs:
           set PATH=%CD%\zlib;%CD%\zlib\bin;%CD%\zlib\lib;%CD%\zlib\include;%PATH%
           set PATH=%CD%\OpenSSL;%PATH%
           set PATH=%PATHCM%;%PATH%
-          set CC=D:\Qt\Tools\mingw810_32\bin\gcc.exe
-          set CXX=D:\Qt\Tools\mingw810_32\bin\g++.exe
           mkdir build
           cd build
           cmake ^
+           -DCMAKE_C_COMPILER=gcc ^
+           -DCMAKE_CXX_COMPILER=g++ ^
            -DCMAKE_BUILD_TYPE=Release ^
            -DLauncher_NOTIFICATION_URL:STRING=https://files.multimc.org/notifications.json ^
            -DCMAKE_INSTALL_PREFIX:PATH="D:/UltimMC/UltimMC" ^
+           -DCMAKE_PREFIX_PATH="D:\Qt\5.15.2\mingw81_32" ^
            -DQt5_DIR="D:\Qt\5.15.2\mingw81_32" ^
            -DLauncher_UPDATER_BASE=https://files.multimc.org/update/ ^
            -DLauncher_PASTE_EE_API_KEY:STRING=utLvciUouSURFzfjPxLBf5W4ISsUX4pwBDF7N1AfZ ^
            -DLauncher_ANALYTICS_ID:STRING=UA-87731965-2 ^
            -DLauncher_LAYOUT=win-bundle ^
            -DLauncher_BUILD_PLATFORM=win32-5.15.2 ^
+           -DLauncher_BUG_TRACKER_URL=https://github.com/UltimMC/Launcher/issues ^
            -G "MinGW Makefiles" ^
            ..
 
@@ -364,6 +370,7 @@ jobs:
           -DLauncher_ANALYTICS_ID:STRING=UA-87731965-2 \
           -DLauncher_LAYOUT=mac-bundle \
           -DLauncher_BUILD_PLATFORM=osx64-5.15.2 \
+          -DLauncher_BUG_TRACKER_URL=https://github.com/UltimMC/Launcher/issues \
           -DCMAKE_OSX_DEPLOYMENT_TARGET=10.13 \
           $GITHUB_WORKSPACE
 
