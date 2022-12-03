@@ -228,7 +228,7 @@ jobs:
           arch: "win32_mingw81"
           cache: true
           dir: "D:"
-          tools: 'tools_mingw,qt.tools.win32_mingw810'
+          tools: 'tools_mingw,qt.tools.win32_mingw810 tools_openssl_x86'
 
       - name: Setup CMake
         run: |
@@ -250,13 +250,6 @@ jobs:
           curl -L https://downloads.sourceforge.net/project/gnuwin32/zlib/1.2.3/zlib-1.2.3-lib.zip -o zliblibs.zip
           unzip zlib.zip
           unzip zliblibs.zip
-
-      - name: Setup OpenSSL
-        run: |
-          mkdir OpenSSL
-          cd OpenSSL
-          curl -L https://files.catbox.moe/ctwswu.dll -o libeay32.dll
-          curl -L https://files.catbox.moe/ie9e77.dll -o ssleay32.dll
 
       - name: Build
         shell: cmd
@@ -325,8 +318,7 @@ jobs:
       - name: Copy OpenSSL
         shell: cmd
         run: |
-          cp OpenSSL/ssleay32.dll D:/UltimMC/UltimMC/ssleay32.dll
-          cp OpenSSL/libeay32.dll D:/UltimMC/UltimMC/libeay32.dll
+          copy "D:\Qt\Tools\OpenSSL\Win_x86\bin\*.dll" "D:\UltimMC\UltimMC"
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@main
