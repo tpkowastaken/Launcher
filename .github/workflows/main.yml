@@ -19,6 +19,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
+          sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3B4FE6ACC0B21F32
           sudo add-apt-repository 'deb http://dk.archive.ubuntu.com/ubuntu/ bionic main'
           sudo add-apt-repository 'deb http://dk.archive.ubuntu.com/ubuntu/ bionic universe'
           sudo apt update
