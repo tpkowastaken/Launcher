@@ -1,4 +1,4 @@
-## **This is a "cracked" version of a popular Minecraft launcher that lets you play the game without a Microsoft account.**
+## This is a "cracked" version of a popular Minecraft launcher that lets you play the game without a Microsoft account.
 
 ## This software is not related to MultiMC developers and provided without any warranty. Please don't bomb MultiMC developers if something gets wrong using this launcher.
 
@@ -11,7 +11,7 @@
 
 *macOS (10.14 and newer):* Download [mmc-cracked-osx64](https://nightly.link/UltimMC/Launcher/workflows/main/develop/mmc-cracked-osx64.zip).
 
-To update the launcher replace all replaceable files and folders with the newer one from the above link. Do not use the inbuilt option, as that downloads the MultiMC launcher instead (this will be fixed in a future version).
+To update the launcher replace all replaceable files and folders with the newer ones from any of the links listed above. Don't use the inbuilt option, as that downloads the MultiMC launcher instead (this will be fixed in a future version).
 
 ## How to install and use
 1. Download pre-built binaries for your system.
@@ -24,4 +24,4 @@ To update the launcher replace all replaceable files and folders with the newer 
 
 In the case you're using macOS or Linux then another additional step is to make `UltimMC` an executable by running the command `chmod +x UltimMC` in the terminal.
 
-To remove the "localhost:nnnn" or "Ely.by" in the Minecraft main menu and F3, add `-Dauthlibinjector.noShowServerName` to the Java arguments in the UltimMC settings.
+To remove "localhost:nnnn" or "Ely.by" from the Minecraft main menu and F3, add `-Dauthlibinjector.noShowServerName` to the Java arguments in the UltimMC settings.
