@@ -1,9 +1,12 @@
-## This is a "cracked" version of a popular Minecraft launcher that lets you play the game without a Microsoft account.
+# UltimMC
 
-## This software is not related to MultiMC developers and provided without any warranty. Please don't bomb MultiMC developers if something gets wrong using this launcher.
+## This is a "cracked" version of a popular Minecraft launcher that lets you play the game without a Microsoft account
 
-## Pre-built binaries:
-- Windows / Linux / MacOS: https://nightly.link/UltimMC/Launcher/workflows/main/develop
+## This software is not related to MultiMC developers and provided without any warranty. Please don't bomb MultiMC developers if something gets wrong using this launcher
+
+## Pre-built binaries
+
+- Windows / Linux / MacOS: <https://nightly.link/UltimMC/Launcher/workflows/main/develop>
 
 *Windows:* Download [mmc-cracked-win32](https://nightly.link/UltimMC/Launcher/workflows/main/develop/mmc-cracked-win32.zip).
 
@@ -14,6 +17,7 @@
 To update the launcher replace all replaceable files and folders with the newer ones from any of the links listed above. Don't use the inbuilt option, as that downloads the MultiMC launcher instead (this will be fixed in a future version).
 
 ## How to install and use
+
 1. Download pre-built binaries for your system.
 2. Unpack them in your desired directory.
 3. Launch `UltimMC`.
