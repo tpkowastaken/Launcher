@@ -26,6 +26,6 @@ To update the launcher replace all replaceable files and folders with the newer 
 6. Save it.
 7. Now enjoy the Launcher.
 
-In the case you're using macOS or Linux then another additional step is to make `UltimMC` an executable by running the command `chmod +x UltimMC` in the terminal.
+In the case you're using macOS or Linux then another additional step is to make `UltimMC` an executable by running the command `chmod +x UltimMC.app/Contents/MacOS/UltimMC` in the terminal.
 
 To remove "localhost:nnnn" or "Ely.by" from the Minecraft main menu and F3, add `-Dauthlibinjector.noShowServerName` to the Java arguments in the UltimMC settings.
