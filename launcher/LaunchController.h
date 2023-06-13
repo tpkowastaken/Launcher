@@ -3,7 +3,7 @@
 #include <BaseInstance.h>
 #include <tools/BaseProfiler.h>
 
-#include "minecraft/launch/MinecraftServerTarget.h"
+#include "minecraft/launch/QuickPlayTarget.h"
 #include "minecraft/auth/MinecraftAccount.h"
 #include "AuthServer.h"
 
@@ -41,8 +41,8 @@ public:
         m_parentWidget = widget;
     }
 
-    void setServerToJoin(MinecraftServerTargetPtr serverToJoin) {
-        m_serverToJoin = std::move(serverToJoin);
+    void setQuickPlayTarget(QuickPlayTargetPtr quickPlayTarget) {
+        m_quickPlayTarget = std::move(quickPlayTarget);
     }
 
     void setAuthserver(std::shared_ptr<AuthServer> authserver) {
@@ -82,6 +82,6 @@ private:
     MinecraftAccountPtr m_accountToUse = nullptr;
     AuthSessionPtr m_session;
     shared_qobject_ptr<LaunchTask> m_launcher;
-    MinecraftServerTargetPtr m_serverToJoin;
+    QuickPlayTargetPtr m_quickPlayTarget;
     std::shared_ptr<AuthServer> m_authserver;
 };
