@@ -14,7 +14,7 @@
 
 *macOS (10.14 and newer):* Download [mmc-cracked-osx64](https://nightly.link/UltimMC/Launcher/workflows/main/develop/mmc-cracked-osx64.zip).
 
-To update the launcher replace all replaceable files and folders with the newer ones from any of the links listed above. Don't use the inbuilt option, as that downloads the MultiMC launcher instead (this will be fixed in a future version).
+To update the launcher replace all replaceable files and folders with the newer ones from any of the links listed above.
 
 ## How to install and use
 
