@@ -986,6 +986,7 @@ Application::Application(int &argc, char **argv) : QApplication(argc, argv)
     }
 
     // Initialize analytics
+    /*
     [this]()
     {
         const int analyticsVersion = 2;
@@ -1024,6 +1025,7 @@ Application::Application(int &argc, char **argv) : QApplication(argc, argv)
         m_analytics->enable();
         qDebug() << "<> Initialized analytics with tid" << BuildConfig.ANALYTICS_ID;
     }();
+    */
 
     if(createSetupWizard())
     {
@@ -1053,16 +1055,16 @@ bool Application::createSetupWizard()
     }();
     bool analyticsRequired = [&]()
     {
-        if(BuildConfig.ANALYTICS_ID.isEmpty())
-        {
+        if(!m_analytics) {
             return false;
         }
-        if (!settings()->get("Analytics").toBool())
-        {
+        if(BuildConfig.ANALYTICS_ID.isEmpty()) {
             return false;
         }
-        if (settings()->get("AnalyticsSeen").toInt() < analytics()->version())
-        {
+        if (!settings()->get("Analytics").toBool()) {
+            return false;
+        }
+        if (settings()->get("AnalyticsSeen").toInt() < analytics()->version()) {
             return true;
         }
         return false;
